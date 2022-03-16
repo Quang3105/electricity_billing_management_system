@@ -7,6 +7,8 @@
             <th>Ngày lập</th>
             <th>Số điện</th>
             <th>Số tiền</th>
+            <th>Phạt quá hạn</th>
+            <th>Tổng tiền</th>
             <th>Hạn thanh toán</th>
             <th>Trạng thái</th>
             <th>Hành động</th>
