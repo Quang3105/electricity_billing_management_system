@@ -129,8 +129,8 @@ if(isset($_POST["reg_submit"])) {
     if($flag == 0)
     {
         require_once("Includes/config.php");
-        $sql = "INSERT INTO `user` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `status`)
-                    VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}', 2)";
+        $sql = "INSERT INTO `user` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`)
+                    VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}')";
         echo $sql;
         if (!mysqli_query($con,$sql))
         {

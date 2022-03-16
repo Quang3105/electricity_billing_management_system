@@ -54,6 +54,22 @@ END$$
 
 DELIMITER ;
 
+CREATE TABLE `admin` (
+  `id` int(14) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `gender` BIT NOT NULL,
+  `birthday` date NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `pass` varchar(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `status` INT(1) NOT NULL
+);
+
+INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `status`) VALUES
+(1, 'Administrator One', 'admin@gmail.com', 1, '2001-02-29', '0911052403', 'Password@123', 'Phố 5', 0),
+(2, 'Administrator Two','admin2@gmail.com', 0, '1999-03-24', '0917885759', 'admin2', 'Phố 7', 0);
+
 
 CREATE TABLE `bill` (
   `id` int(14) NOT NULL,
@@ -105,26 +121,25 @@ CREATE TABLE `user` (
   `email` varchar(40) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `pass` varchar(20) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `status` INT(1) NOT NULL
+  `address` varchar(100) NOT NULL
 );
 
 
-INSERT INTO `user` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `status`) VALUES
-(1, 'Trần Văn A', 'abc@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 1', 2),
-(2, 'Nguyễn Thị B', 'bac@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 12', 2),
-(3, 'Cùi Thị C', 'etta@gmail.com', 0, '2001-05-31','0123456789', 'password', 'Phố 11', 2),
-(4, 'Giang Minh D', 'ddd@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 3', 2),
-(5, 'Phạm Trọng E', 'hahaha@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 4', 2),
-(6, 'Trí Hạ F', 'fff@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 11', 2),
-(7, 'Lại Thế G', 'ggg@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 20', 2),
-(8, 'Giang Sang H', 'hhh@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 19', 2),
-(9, 'Trần Mỹ L', 'lll@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 18', 2),
-(10, 'Hạ Thị M', 'mmm@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 5', 2),
-(11, 'Lê Minh N', 'nnn@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 7', 2),
-(12, 'Administrator One', 'admin@gmail.com', 1, '2001-02-29', '0911052403', 'Password@123', 'Phố 5', 0),
-(13, 'Administrator Two','admin2@gmail.com', 0, '1999-03-24', '0917885759', 'admin2', 'Phố 7', 0);
+INSERT INTO `user` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`) VALUES
+(1, 'Trần Văn A', 'abc@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 1'),
+(2, 'Nguyễn Thị B', 'bac@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 12'),
+(3, 'Cùi Thị C', 'etta@gmail.com', 0, '2001-05-31','0123456789', 'password', 'Phố 11'),
+(4, 'Giang Minh D', 'ddd@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 3'),
+(5, 'Phạm Trọng E', 'hahaha@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 4'),
+(6, 'Trí Hạ F', 'fff@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 11'),
+(7, 'Lại Thế G', 'ggg@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 20'),
+(8, 'Giang Sang H', 'hhh@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 19'),
+(9, 'Trần Mỹ L', 'lll@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 18'),
+(10, 'Hạ Thị M', 'mmm@gmail.com', 0, '2001-05-31', '0123456789', 'password', 'Phố 5'),
+(11, 'Lê Minh N', 'nnn@gmail.com', 1, '2001-05-31', '0123456789', 'password', 'Phố 7');
 
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
@@ -134,11 +149,15 @@ ALTER TABLE `bill`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `admin`
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 ALTER TABLE `bill`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
   
 ALTER TABLE `user`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 ALTER TABLE `bill`
+  ADD CONSTRAINT `FK_adminbill` FOREIGN KEY (`uid`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
   ADD CONSTRAINT `FK_userbill` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
