@@ -2,7 +2,6 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS `calcamount`
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calcamount` (IN `units` INT(14), OUT `result` INT(14))  BEGIN
-
     DECLARE a INT(14) DEFAULT 0;
     DECLARE b INT(14) DEFAULT 0;
     DECLARE c INT(14) DEFAULT 0;
@@ -20,7 +19,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `calcamount` (IN `units` INT(14), OU
     IF units<=50
     then
         SELECT a*units INTO result;
-
     ELSEIF units>50 and units<=100
     then
         SELECT (a*50)+(b*(units-50)) INTO result;
@@ -138,10 +136,9 @@ ALTER TABLE `user`
 
 ALTER TABLE `bill`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  
 ALTER TABLE `user`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 ALTER TABLE `bill`
   ADD CONSTRAINT `FK_userbill` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-

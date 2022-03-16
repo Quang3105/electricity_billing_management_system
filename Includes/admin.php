@@ -82,8 +82,6 @@
         $query1 .= "WHERE curdate() > bill.ddate AND curdate() < adddate(bill.ddate , INTERVAL 25 DAY ) ";
         $query1 .= "AND bill.aid={$id} AND bill.status=N'Đang chờ' ";
 
-        //query for defaulting 
-        //remove user and all relating data
         $query2  = "SELECT COUNT(*) FROM bill  ";
         $query2 .= "WHERE curdate() > adddate(bill.ddate , INTERVAL 25 DAY ) ";
         $query2 .= "AND bill.aid={$id} AND bill.status=N'Đang chờ' ";
@@ -102,5 +100,4 @@
             }
         return array($result1,$result2,);
     }
-
  ?>
