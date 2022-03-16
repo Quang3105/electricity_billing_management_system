@@ -44,7 +44,7 @@
                             <?php echo $row['uname'] ?>
                         </td>
                         <td>                                                
-                            <input class="form-control" type="tel" name="units" placeholder="Nhập số điện">
+                            <input class="form-control" type="number" name="units" placeholder="Nhập số điện">
                         </td>
                         <td>
                             <?php echo $row['bdate'] ?> 
