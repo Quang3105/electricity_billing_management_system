@@ -32,7 +32,7 @@
 
     function get_bill_data(){
         global $con;
-        $query  = "SELECT curdate() AS bdate , adddate( curdate(),INTERVAL 30 DAY ) AS ddate , user.id AS uid , user.name AS uname FROM user WHERE user.status = 2 ";
+        $query  = "SELECT curdate() AS bdate , adddate( curdate(),INTERVAL 30 DAY ) AS ddate , user.id AS uid , user.name AS uname FROM user ";
         // echo $query;
         $result = mysqli_query($con,$query);
         if($result === FALSE) {
@@ -45,7 +45,7 @@
     function get_users_detail($id)
     {
         global $con;
-        $query  = "SELECT * FROM user WHERE status = 2";
+        $query  = "SELECT * FROM user";
         $result = mysqli_query($con,$query);
         if($result === FALSE) {
             die(mysql_error());
