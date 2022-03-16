@@ -26,7 +26,6 @@ if(isset($_POST["reg_submit"])) {
             echo $nameErr;
         } else {
             $name = test_input($_POST["name"]);
-            // check if name only contains letters and whitespace
             if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                 $nameErr = "Chỉ được phép nhập kí tự và dấu cách";
                 $flag=1;
@@ -39,7 +38,6 @@ if(isset($_POST["reg_submit"])) {
             $flag=1;
             } else {
             $email = test_input($_POST["email"]);
-            // check if e-mail address is well-formed
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $emailErr = "Định dạng email không hợp lệ";
                 $flag=1;
@@ -80,7 +78,6 @@ if(isset($_POST["reg_submit"])) {
             echo $addrErr;
         } else {
             $address = test_input($_POST["address"]);
-            // check if address only contains letters and whitespace
             // if (!preg_match("/^[a-zA-Z1-9]*$/",$address)) {
             //     $addrErr = "Chỉ cho phép điền ký tự và dấu cách";
             //     // $flag=1; 

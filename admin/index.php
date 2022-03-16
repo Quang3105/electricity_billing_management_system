@@ -173,12 +173,12 @@
                                                 <h3 class="modal-title"><b>Phạt quá hạn</b></h3>
                                             </div>
                                             <div class="modal-body text-center">
-                                                <p><h4>ARE YOU SURE?</h4></p>
+                                                <p><h4></h4></p>
                                             </div>
                                             <div class="modal-footer">
                                                 <form action="dash_defaulting_users.php" method="post">                                               
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
-                                                    <button type="submit" id="late_user" name="late_user" class="btn btn-success ">YES</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
+                                                    <button type="submit" id="late_user" name="late_user" class="btn btn-success ">Có</button>
                                                 </form> 
                                             </div>
                                         </div><!-- /.modal-content -->
