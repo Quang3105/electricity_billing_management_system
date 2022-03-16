@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("Includes/config.php");
 require_once("Includes/session.php");
 if(isset($_SESSION['logged']))
@@ -11,16 +11,16 @@ if(isset($_SESSION['logged']))
         elseif ($_SESSION['account'] == 2) {
                 header("Location:user/index.php");
             }
-    }  
+    }
     else  {
         header("Location:../index.php");
-      }  
+      }
 }
 
 if(isset($_POST['login_submit'])) {
     if(!(isset($_POST['email']))) {
         if(!(isset($_POST['pass']))) {
-            location('index.php');    
+            location('index.php');
         }
     }
 }
@@ -90,7 +90,7 @@ if(isset($_POST['login_submit'])) {
     </div>
 
     <!--=======================JS=========================== -->
-    <script src="assets/js/jquery-1.11.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 
     <script src="assets/js/custom.js"></script>
@@ -104,9 +104,9 @@ if(isset($_POST['login_submit'])) {
                 alert("Email không hợp lệ");
                 return false;
             }
-        }  </script> 
+        }  </script>
 
-    
+
 </body>
 
 </html>

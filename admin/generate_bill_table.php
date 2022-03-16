@@ -1,4 +1,4 @@
-    <div class="table-responsive">
+   <div class="table-responsive">
     <table class="table table-hover table-striped table-bordered table-condensed" id="list1">
         <colgroup>
             <col width="20%">
@@ -25,7 +25,7 @@
             while($row = mysqli_fetch_assoc($result)){
             ?>
                 <tr>
-                    <form action="generate_bill.php" method="post" name="form_gen_bill" onsubmit="return checkInp()">
+                    <form action="generate_bill.php" method="post" name="form_gen_bill">
                     <?php
                         $query3 = "SELECT bdate as bdate1 from bill ,user WHERE user.id=bill.uid and user.id={$row['uid']} ORDER BY bill.id DESC ";
                         $result3 = mysqli_query($con,$query3);
@@ -66,15 +66,3 @@
             </tbody>                
         </table>
     </div><!-- ./table-responsive -->
-    
-<script>
-    // function checkInp()
-    // {
-    //       var x=document.forms["form_gen_bill"]["units"].value;
-    //       if (isNaN(x)) 
-    //       {
-    //         alert("Phải điền số điện");
-    //         return false;
-    //       }
-    // }
-</script>
