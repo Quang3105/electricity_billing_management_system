@@ -1,15 +1,5 @@
 <div class="table-responsive">
     <table class="table table-hover table-bordered table-striped" id="list2">
-        <colgroup>
-            <col width="5%">
-            <col width="15%">
-            <col width="15%">
-            <col width="10%">
-            <col width="15%">
-            <col width="15%">
-            <col width="10%">
-            <col width="15%">
-        </colgroup>
         <thead>
         <tr>
             <th>SHĐ</th>
@@ -37,10 +27,13 @@
                     <td><?php echo $row['bdate'] ?></td>
                     <td><?php echo $row['units'] ?></td>
                     <td><?php echo $row['amount'].' VNĐ' ?></td>
+                    <td><?php echo $row['dues'].' VNĐ' ?></td>
+                    <td><?php echo $row['pay'].' VNĐ' ?></td>
                     <td><?php echo $row['ddate'] ?></td>
                     <td><?php echo'<span class="badge" style="background: greenyellow;">'.$row["status"].'</span>' ?></td>
-                    <td>
-                        <button type="submit" name="accept_bill" class="btn btn-success form-control">Duyệt thanh toán </button>
+                    <td class="text-center">
+                        <button type="submit" name="accept_bill" class="btn btn-success form-control fa fa-fw fa-check"></button>
+                        <button type="submit" name="decline_bill" class="btn btn-success form-control fa fa-fw fa-close" style="background-color: red"></button>
                     </td>
                 </form>
             </tr>

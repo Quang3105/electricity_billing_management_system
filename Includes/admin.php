@@ -3,8 +3,8 @@
 
     function get_bills_generated($id) {
         global $con;
-        $query  = "SELECT user.name AS user, bill.bdate AS bdate , bill.units AS units , bill.amount AS amount , bill.id as bid ";
-        $query .= ", bill.ddate AS ddate, bill.status AS status ";
+        $query  = "SELECT user.name AS user, bill.bdate AS bdate , bill.units AS units , bill.amount AS amount , bill.dues AS dues, bill.pay AS pay, bill.id as bid ";
+        $query .= ", bill.ddate AS ddate, bill.status AS status, bill.pdate AS pdate ";
         $query .= " FROM user , bill ";
         $query .= " WHERE user.id=bill.uid AND aid={$id} AND bill.status != 'Chờ duyệt'";
         $query .= " ORDER BY bill.id DESC ";
@@ -17,7 +17,7 @@
     }
     function get_bills_pending($id) {
         global $con;
-        $query  = "SELECT user.name AS user, bill.bdate AS bdate , bill.units AS units , bill.amount AS amount , bill.id as bid ";
+        $query  = "SELECT user.name AS user, bill.bdate AS bdate , bill.units AS units , bill.amount AS amount , bill.dues AS dues, bill.pay AS pay, bill.id as bid ";
         $query .= ", bill.ddate AS ddate, bill.status AS status ";
         $query .= " FROM user , bill ";
         $query .= " WHERE user.id=bill.uid AND aid={$id} AND bill.status = 'Chờ duyệt'";
@@ -78,13 +78,10 @@
         global $con;
 
         //TODO : cần chỉnh sửa thêm cho cập nhật mức phạt!
-        $query1  = "SELECT COUNT(*) FROM bill , transaction ";
+        $query1  = "SELECT COUNT(*) FROM bill ";
         $query1 .= "WHERE curdate() > bill.ddate AND curdate() < adddate(bill.ddate , INTERVAL 25 DAY ) ";
         $query1 .= "AND bill.aid={$id} AND bill.status=N'Đang chờ' ";
-        $query1 .= "AND bill.amount = transaction.payable AND bill.id=transaction.bid ";
 
-        //query for defaulting 
-        //remove user and all relating data
         $query2  = "SELECT COUNT(*) FROM bill  ";
         $query2 .= "WHERE curdate() > adddate(bill.ddate , INTERVAL 25 DAY ) ";
         $query2 .= "AND bill.aid={$id} AND bill.status=N'Đang chờ' ";
@@ -103,16 +100,4 @@
             }
         return array($result1,$result2,);
     }
-
-    function insert_into_transaction($id,$amount){
-            global $con;
-            $query = "INSERT INTO transaction (bid,payable,pdate,status) ";
-            $query .= "VALUES ({$id}, {$amount} , NULL , N'Đang chờ' )";
-            if (!mysqli_query($con,$query))
-            {
-                die('Lỗi: ' . mysqli_error($con));
-            }
-
-        }
-
  ?>

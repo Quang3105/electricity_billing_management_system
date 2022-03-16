@@ -60,8 +60,7 @@
                                             <?php 
                                             $id=$_SESSION['uid'];
 
-                                            $result = retrieve_bills_history($_SESSION['uid']);
-                                            // Initialising #
+                                            $result = get_bills_history($_SESSION['uid']);
                                             while($row = mysqli_fetch_assoc($result)){
                                             ?>
                                                 <tr>
@@ -98,12 +97,8 @@
                                             <?php 
 
                                             $id=$_SESSION['uid'];
-                                            $query1 = "SELECT COUNT(*) FROM bill where uid={$id} AND status=N'Đang chờ' OR status=N'Chờ duyệt' ";
-                                            $result1 = mysqli_query($con,$query1);
-                                            $row1 = mysqli_fetch_row($result1);
-                                            $numrows = $row1[0];
 
-                                            $result = retrieve_bills_due($_SESSION['uid']);
+                                            $result = get_bills_due($_SESSION['uid']);
                                             $counter = 1;
                                             while($row = mysqli_fetch_assoc($result)){
                                             ?>

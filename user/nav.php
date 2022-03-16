@@ -48,7 +48,7 @@
 
 <?php 
     require_once("../Includes/user.php");
-    $result = retrieve_user_details($_SESSION['uid']);
+    $result = get_user_details($_SESSION['uid']);
     $row = mysqli_fetch_assoc($result);
  ?>
 

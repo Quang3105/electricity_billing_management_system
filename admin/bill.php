@@ -47,33 +47,23 @@
                                 
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered table-striped" id="list">
-                                        <colgroup>
-                                            <col width="10%">
-                                            <col width="20%">
-                                            <col width="13%">
-                                            <col width="10%">
-                                            <col width="15%">
-                                            <col width="15%">
-                                            <col width="12%">
-                                        </colgroup>
                                         <thead>
                                             <tr>
                                                 <th>SHĐ</th>
                                                 <th>Khách hàng</th>
                                                 <th>Ngày lập</th>
-                                                <th>Số điện tiêu thụ</th>
+                                                <th>Số điện</th>
                                                 <th>Số tiền</th>
+                                                <th>Phạt quá hạn</th>
+                                                <th>Tổng tiền</th>
                                                 <th>Hạn thanh toán</th>
+                                                <th>Ngày thanh toán</th>
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
                                             $id=$_SESSION['aid'];
-                                            $query1 = "SELECT COUNT(user.name) FROM user,bill WHERE user.id=bill.uid AND aid={$id}";
-                                            $result1 = mysqli_query($con,$query1);
-                                            $row1 = mysqli_fetch_row($result1);
-                                            $numrows = $row1[0];
                                             $result = get_bills_generated($_SESSION['aid']);
                                             while($row = mysqli_fetch_assoc($result)){
                                             ?>
@@ -83,8 +73,11 @@
                                                     <td><?php echo $row['bdate'] ?></td>
                                                     <td><?php echo $row['units'] ?></td>
                                                     <td><?php echo $row['amount'].' VNĐ' ?></td>
+                                                    <td><?php echo $row['dues'].' VNĐ' ?></td>
+                                                    <td><?php echo $row['pay'].' VNĐ' ?></td>
                                                     <td><?php echo $row['ddate'] ?></td>
-                                                    <td><?php if($row['status'] == 'Đang chờ') { echo'<span class="badge" style="background: red;">'.$row["status"].'</span>'; } else { echo'<span class="badge" style="background: green;">'.$row["status"].'</span>';} ?></td>
+                                                    <td><?php echo $row['pdate'] ?></td>
+                                                    <td><?php if($row['status'] == 'Đã thanh toán') { echo'<span class="badge" style="background: green;">'.$row["status"].'</span>'; } else { echo'<span class="badge" style="background: red;">'.$row["status"].'</span>';} ?></td>
                                                 </tr>
                                             <?php 
                                             }

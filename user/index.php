@@ -54,7 +54,7 @@
                         <div class="row" style="margin-top: 20px;">
 
                             <?php 
-                                list($result1,$result2) = retrieve_user_stats($_SESSION['uid']);
+                                list($result1,$result2) = get_user_stats($_SESSION['uid']);
                                 $row1 = mysqli_fetch_row($result1);
                                 $row2 = mysqli_fetch_row($result2);
                              ?>

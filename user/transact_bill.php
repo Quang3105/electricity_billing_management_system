@@ -10,14 +10,12 @@
     $amount = $_POST['amount'];
     $payable = $_POST['payable'];
 
-//UPDATE BILL
-//UPDATE TRANSACTION
 
     if (isset($_POST['pay_bill'])) {
-        $query  =  "UPDATE user , bill , transaction ";
-        $query .=  "SET bill.status='Chờ duyệt' , transaction.status='Chờ duyệt' , pdate=curdate() ";
-        $query .=  "where user.id={$uid} AND bill.id=transaction.bid AND bill.units={$units} "; 
-        $query .=  "AND bill.amount={$amount} AND transaction.payable={$payable}" ;
+        $query  =  "UPDATE user , bill";
+        $query .=  "SET bill.status='Chờ duyệt' , pdate=curdate() ";
+        $query .=  "where user.id={$uid} AND bill.units={$units} ";
+        $query .=  "AND bill.amount={$amount}" ;
 
         if (!mysqli_query($con,$query))
         {

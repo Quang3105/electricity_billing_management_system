@@ -32,7 +32,6 @@
                             HÓA ĐƠN
                         </h1>
 
-                        <!-- Pills Tabbed GENERATED | GENERATE -->
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a href="#generated" data-toggle="pill">Lịch sử đã tạo</a>
                             </li>
@@ -43,9 +42,6 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="generated">
-                                <!-- <h4>{User} Bills(ALL UP TO DATE) goes here{Table form}</h4> -->
-                                <!-- DB RETRIEVAL search db where id is his and status is processed -->
-                                
                                 <div class="table-responsive">
                                     <table class="table table-hover table-striped table-bordered table-condensed">
                                         <thead>
@@ -62,10 +58,6 @@
                                         <tbody>
                                         <?php
                                             $id=$_SESSION['aid'];
-                                            $query1 = "SELECT COUNT(user.name) FROM user,bill WHERE user.id=bill.uid AND aid={$id}";
-                                            $result1 = mysqli_query($con,$query1);
-                                            $row1 = mysqli_fetch_row($result1);
-                                            $numrows = $row1[0];
                                             $result = get_bills_generated($_SESSION['aid']);
                                             while($row = mysqli_fetch_assoc($result)){
                                             ?>

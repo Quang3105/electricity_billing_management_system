@@ -1,9 +1,6 @@
 <?php 
 require_once("Includes/config.php");
 require_once("Includes/session.php");
-// if ($count===0) {
-//     $err_login="There were some problem";
-// }
 if(isset($_SESSION['logged']))
 {
     if ($_SESSION['logged'] == true)
