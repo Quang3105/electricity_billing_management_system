@@ -53,6 +53,17 @@
         return $result;
     }
 
+    function get_admins_detail($id)
+    {
+        global $con;
+        $query  = "SELECT * FROM admin WHERE id != {$id}";
+        $result = mysqli_query($con,$query);
+        if($result === FALSE) {
+            die(mysql_error());
+        }
+        return $result;
+    }
+
     function get_admin_stats($id)
     {
         global $con;

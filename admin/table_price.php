@@ -24,7 +24,7 @@
 
 <body>
 
-    <div id="wrapper">
+   <div id="wrapper">
 
         <?php
             require_once("nav.php");
@@ -33,45 +33,40 @@
     </div>
 
 
-<div class="row" align="center">
-                    <div class="col-lg-6" style="padding-top: 30px; padding-left: auto;">
-                        <h1 class="page-header">
-                            Sửa Giá Điện
-                        </h1>
-                        <div class="table-responsive" style="padding-top: 0">
-                                <table class="table table-hover table-bordered table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Level</th>
-                                            <th>Giá Điện</th>
-                                            <th style="width: 30px;"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                     <?php 
-                                            $query1 = "SELECT * FROM `unitsprice`";
-                                            $result1 = mysqli_query($con,$query1);
-                                            //$row1 = mysqli_fetch_row($result1);
-                                           
-                                            while($row = mysqli_fetch_assoc($result1)){
-                                            ?>
-                                            <tr>
-                                                    <td><?php echo $row['level']; ?></td>
-                                                    <td><?php echo $row['price']; ?></td>
-                                                    <td>
-                                                        <a href="update_price.php?level=<?php echo  $row['level']; ?>"><button class="btn btn-warning">Sửa</button></a>
-                                                    </td>                                        
-                                            </tr>
+    <div class="col-md-4" style="padding-top: 30px; padding-left: 250px; width: 800px;">
+        <h1 class="page-header">
+            Sửa Giá Điện
+        </h1>
 
-                                            <?php } ?>
-                                    </tbody>
-                                </table>
-                        </div>
-                        <!-- ./table -rsponsive -->
-                        
-                    </div><!-- ./col -->
+        <table class="table table-hover" border="1">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Giá Điện</th>
+                    <th style="width: 30px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    $query1 = "SELECT * FROM `unitsprice`";
+                    $result1 = mysqli_query($con,$query1);
+                    //$row1 = mysqli_fetch_row($result1);
+                   
+                    while($row = mysqli_fetch_assoc($result1)){
+                    ?>
+                    <tr>
+                            <td><?php echo $row['level']; ?></td>
+                            <td><?php echo $row['price']; ?></td>
+                            <td>
+                                <a href="update_price.php?level=<?php echo  $row['level']; ?>"><button class="btn btn-warning">Sửa</button></a>
+                            </td>                                        
+                    </tr>
 
-                </div> <!-- /.row -->
+                <?php } ?>
+            </tbody>
+        </table>
+
+    </div>
 
 
 

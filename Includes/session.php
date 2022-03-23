@@ -34,7 +34,7 @@
                 $_SESSION['logged']=true;
                 $_SESSION['email'] = $email;
                 $_SESSION['aid']=$row['id'];
-                if ($row['status'] = 0) {
+                if ($row['status'] == 0) {
                     $_SESSION['account'] = 0;
                 }
                 else $_SESSION['account'] = 1;

@@ -15,7 +15,8 @@
 
 <body>
 
-    <div id="wrapper">
+
+ <div id="wrapper">
 
         <?php
             require_once("nav.php");
@@ -47,22 +48,31 @@
        }
 
        if ($price != "") {
-           $query1 = "UPDATE `unitsprice` set price = '$price' where level = $level";
-           $result1 = mysqli_query($con, $query1);
-           header("Location:admin/table_price.php");
+            $query1 = "UPDATE `unitsprice` set price = '$price' where level = $level";
+            $result1 = mysqli_query($con,$query1);
            // code...
        }
+         // code...
      } 
 ?>
 
-<div class="col-lg-6" style="padding-top: 130px; padding-left: auto;">
-    <form method="post" action="">
-        <label>Level:</label><input type="text" name="level" value="<?php echo $row['level']; ?>"> <br><br>
-        <label>Giá Điện:</label><input type="text" name="price" value="<?php echo $row['price']; ?>"> <br><br>
+    
+    
+    <div class="col-lg-6" style="padding-top: 130px; padding-left: 500px;">
+    <form method="post">
+        <h3>Sửa Giá Điện</h3>
+        <label>Level <?php echo $row['level']; ?></label>
+        <br>
+        <label>Giá Điện:</label>
+        <input type="text" name="price" value="<?php echo $row['price']; ?>">
+        <br><br>
         <input type="submit" name="sua" value="Sửa">   
     </form>
-</div>
+    <br>
 
+    <a href="table_price.php"><button class="btn btn-warning">Thoát</button></a>
+
+    </div>
 
 
     <?php
