@@ -35,7 +35,9 @@ elseif ($_SESSION['account'] != 0 and $_SESSION['account'] != 1) {
                         <li>Nhân viên</li>
                         <li class="active">Chi tiết</li>
                     </ol>
+                    <?php if ($_SESSION['account'] == 0): ?>
                     <a class="btn btn-block btn-sm btn-default border-primary " href="new_employee.php" style="margin: 10px;"><i class="fa fa-plus"></i>Thêm nhân viên mới</a>
+                    <?php endif; ?>
                         <div class="table-responsive" style="padding-top: 0">
                             <table class="table table-hover table-bordered table-condensed" id="list">
                                 <thead>
