@@ -106,7 +106,10 @@
                                                     <form action="transact_bill.php" method="post">
                                                     <!-- <td height="40"><?php echo $counter ?></td> -->
 
+                                                    <input type="hidden" name="bid" value="<?php echo $row['id'] ?>">
+
                                                     <input type="hidden" name="bdate" value=<?php echo $row['bdate'] ?> >
+                                                        1
                                                     <td td height="50"><?php echo $row['bdate'] ?></td>
 
                                                     <input type="hidden" name="units" value=<?php echo $row['units'] ?> >

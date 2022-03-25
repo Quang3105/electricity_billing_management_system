@@ -63,10 +63,10 @@ CREATE TABLE `admin` (
   `phone` varchar(255) NOT NULL,
   `pass` varchar(20) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `status` INT(1) NOT NULL
+  `role` INT(1) NOT NULL
 );
 
-INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `status`) VALUES
+INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`) VALUES
 (1, 'Administrator One', 'admin@gmail.com', 1, '2001-02-29', '0911052403', 'Password@123', 'Phố 5', 0),
 (2, 'Administrator Two','admin2@gmail.com', 0, '1999-03-24', '0917885759', 'admin2', 'Phố 7', 0);
 

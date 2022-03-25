@@ -4,6 +4,7 @@
     require_once('../Includes/user.php');
 
     $uid = $_SESSION['uid'];
+    $bid = $_POST['bid'];
     $bdate = $_POST['bdate'];
     $ddate = $_POST['ddate'];
     $units = $_POST['units'];
@@ -12,10 +13,9 @@
 
 
     if (isset($_POST['pay_bill'])) {
-        $query  =  "UPDATE user , bill";
+        $query  =  "UPDATE user , bill ";
         $query .=  "SET bill.status='Chờ duyệt' , pdate=curdate() ";
-        $query .=  "where user.id={$uid} AND bill.units={$units} ";
-        $query .=  "AND bill.amount={$amount}" ;
+        $query .=  "where user.id={$uid} AND bill.id={$bid} ";
 
         if (!mysqli_query($con,$query))
         {

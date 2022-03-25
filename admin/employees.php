@@ -74,7 +74,7 @@ elseif ($_SESSION['account'] != 0 and $_SESSION['account'] != 1) {
                                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hành động
                                                         <span class="caret"></span></button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a class="update_emp" href="#" data-toggle="modal" data-target="#update_emp_modal" data-id="<?php echo $row['id'] ?>">Sửa</a></li>
+                                                        <li><a class="update_emp" href="update_employee.php?id=<?php echo  $row['id']; ?>">Sửa</a></li>
                                                         <li class="divider"></li>
                                                         <li><a class="delete_emp" href="#" data-toggle="modal" data-target="#delete_emp_modal" data-id="<?php echo $row['id'] ?>">Xóa</a></li>
                                                     </ul>
@@ -92,7 +92,6 @@ elseif ($_SESSION['account'] != 0 and $_SESSION['account'] != 1) {
 
                 </div><!-- ./col -->
             </div> <!-- /.row -->
-            <?php if (isset($_COOKIE['delempid'])): ?>
             <div class="modal fade" id="delete_emp_modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -113,7 +112,6 @@ elseif ($_SESSION['account'] != 0 and $_SESSION['account'] != 1) {
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-    <?php endif; ?>
         </div><!-- /.container-fluid -->
 
     </div>

@@ -3,15 +3,10 @@ require_once('head_html.php');
 require_once('../Includes/config.php');
 require_once('../Includes/session.php');
 require_once('../Includes/admin.php');
-if ($logged==false) {
-    header("Location:../index.php");
-}
-elseif ($_SESSION['account'] != 0 and $_SESSION['account'] != 1) {
-    header("Location:../index.php");
-}
 
-$nameErr = $phoneErr = $addrErr = $emailErr = $passwordErr = $confpasswordErr = $genderErr = $birthdayErr ="";
-$name = $email = $password = $confpassword = $address = $gender = $birthday = "";
+
+$nameErr = $phoneErr = $addrErr = $emailErr = $passwordErr = $confpasswordErr = $genderErr = $birthdayErr = $roleErr = "";
+$name = $email = $password = $role = $confpassword = $address = $gender = $birthday = "";
 $flag=0;
 
 function test_input($data) {
@@ -21,15 +16,26 @@ function test_input($data) {
     return $data;
 }
 
-if(isset($_POST["reg_submit"])) {
+if(isset($_POST["emp_submit"])) {
     $email = test_input($_POST['email']);
     $password = test_input($_POST["inputPassword"]);
     $confpassword = test_input($_POST["confirmPassword"]);
     $address = test_input($_POST["address"]);
+    $role = test_input($_POST["role"]);
     $email = test_input($_POST['email']);
     $gender = test_input($_POST['gender']);
     $birthday = test_input($_POST['birthday']);
 
+
+    //status vallidation
+    if (empty($_POST['role'])) {
+        $roleErr = "chưa chọn phân quyền";
+        $flag = 1;
+        echo $roleErr;
+        // code...
+    } else{
+        $role = test_input($_POST["role"]);
+    }
 
     // NAME VALIDATION
     if (empty($_POST["name"])) {
@@ -138,15 +144,15 @@ if(isset($_POST["reg_submit"])) {
     echo $flag;
     if($flag == 0)
     {
-        require_once("Includes/config.php");
-        $sql = "INSERT INTO `admin` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`)
-                    VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}')";
+        require_once('../Includes/config.php');
+        $sql = "INSERT INTO `admin` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`)
+                    VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}', {$role})";
         echo $sql;
         if (!mysqli_query($con,$sql))
         {
             die('Lỗi: ' . mysqli_error($con));
         }
-        header("Location:admin/employees.php");
+        header("Location:employees.php");
     }
 }
 ?>
@@ -171,7 +177,7 @@ if(isset($_POST["reg_submit"])) {
                         </ol>
                     <!-- /col-lg-6 -->
                     <div class="col-lg-6">
-                        <form action="signup.php" method="post" class="form-horizontal" role="form">
+                        <form action="new_employee.php" method="post" class="form-horizontal" role="form">
                                 <div class="row form-group">
                                     <div class="col-md-8">
                                         <input type="name" class="form-control" name="name" id="name" placeholder="Tên đầy đủ" required>
