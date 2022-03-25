@@ -28,7 +28,7 @@ if(isset($_POST["emp_submit"])) {
 
 
     //status vallidation
-    if (empty($_POST['role'])) {
+    if (!isset($_POST['role'])) {
         $roleErr = "chưa chọn phân quyền";
         $flag = 1;
         echo $roleErr;
@@ -145,8 +145,13 @@ if(isset($_POST["emp_submit"])) {
     if($flag == 0)
     {
         require_once('../Includes/config.php');
-        $sql = "INSERT INTO `admin` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`)
+        if ($role == 1) {
+            $sql = "INSERT INTO `admin` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`, `manager_id`)
+                    VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}', {$role}, {$_SESSION['aid']})";
+        } else {
+            $sql = "INSERT INTO `admin` (`name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`)
                     VALUES('{$name}', '{$email}' , {$gender} , '{$birthday}' , '{$contactNo}' , '{$password}' , '{$address}', {$role})";
+        }
         echo $sql;
         if (!mysqli_query($con,$sql))
         {

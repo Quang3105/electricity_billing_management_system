@@ -63,12 +63,13 @@ CREATE TABLE `admin` (
   `phone` varchar(255) NOT NULL,
   `pass` varchar(20) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `role` INT(1) NOT NULL
+  `role` INT(1) NOT NULL,
+  `manager_id` INT(14)
 );
 
-INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`) VALUES
-(1, 'Administrator One', 'admin@gmail.com', 1, '2001-02-29', '0911052403', 'Password@123', 'Phố 5', 0),
-(2, 'Administrator Two','admin2@gmail.com', 0, '1999-03-24', '0917885759', 'admin2', 'Phố 7', 0);
+INSERT INTO `admin` (`id`, `name`, `email`, `gender`, `birthday`, `phone`, `pass`, `address`, `role`, `manager_id`) VALUES
+(1, 'Administrator One', 'admin@gmail.com', 1, '2001-02-29', '0911052403', 'Password@123', 'Phố 5', 0, NULL),
+(2, 'Administrator Two','admin2@gmail.com', 0, '1999-03-24', '0917885759', 'admin2', 'Phố 7', 0, NULL);
 
 
 CREATE TABLE `bill` (
@@ -157,6 +158,9 @@ ALTER TABLE `bill`
   
 ALTER TABLE `user`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+ALTER TABLE `admin`
+  ADD CONSTRAINT `FK_manager` FOREIGN KEY (`manager_id`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `bill`
   ADD CONSTRAINT `FK_adminbill` FOREIGN KEY (`aid`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
